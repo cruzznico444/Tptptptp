@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gonza — Portafolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a0a;
+      --fg: #f0f0f0;
+      --muted: #6b6b6b;
+      --accent: #d4d4d4;
+      --rule: #1e1e1e;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 6rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(5rem, 14vw, 14rem);
+      font-weight: 700;
+      color: transparent;
+      -webkit-text-stroke: 1px #1c1c1c;
+      white-space: nowrap;
+      pointer-events: none;
+      user-select: none;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      text-align: center;
+      width: 100%;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 780px;
+    }
+
+    .hero-eyebrow {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-slogan {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: var(--fg);
+    }
+
+    .hero-slogan span {
+      color: var(--muted);
+    }
+
+    .hero-sub {
+      margin-top: 2rem;
+      font-size: 0.95rem;
+      color: var(--muted);
+      max-width: 400px;
+    }
+
+    /* ── SECTIONS ── */
+    .container {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    section {
+      border-top: 1px solid var(--rule);
+      padding: 5rem 0;
+    }
+
+    .section-inner {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .section-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding-top: 0.3rem;
+      position: sticky;
+      top: 2rem;
+    }
+
+    .section-body h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.2rem;
+      color: var(--fg);
+      line-height: 1.2;
+    }
+
+    .section-body p {
+      font-size: 0.95rem;
+      color: #a0a0a0;
+      line-height: 1.75;
+    }
+
+    /* ── INTERESTS GRID ── */
+    .interest-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 1.4rem;
+    }
+
+    .tag {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      color: var(--accent);
+      border: 1px solid #2a2a2a;
+      padding: 0.35rem 0.85rem;
+      border-radius: 2px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .tag:hover {
+      border-color: #555;
+      color: var(--fg);
+    }
+
+    /* ── SKILLS BARS ── */
+    .skill-item {
+      margin-top: 1.2rem;
+    }
+
+    .skill-item + .skill-item {
+      margin-top: 1rem;
+    }
+
+    .skill-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 0.5rem;
+    }
+
+    .skill-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--fg);
+    }
+
+    .skill-track {
+      height: 1px;
+      background: #1e1e1e;
+      position: relative;
+    }
+
+    .skill-fill {
+      height: 1px;
+      background: var(--accent);
+      transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--rule);
+      padding: 3rem 2rem;
+    }
+
+    .footer-inner {
+      max-width: 780px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-copy {
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    .footer-ig {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-ig:hover {
+      color: var(--fg);
+    }
+
+    .footer-ig svg {
+      width: 15px;
+      height: 15px;
+      stroke: currentColor;
+      fill: none;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      .section-inner {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+      }
+      .section-label {
+        position: static;
+      }
+      .hero { padding: 5rem 1.5rem 3rem; }
+      .container { padding: 0 1.5rem; }
+    }
+
+    /* ── ENTRANCE ANIMATION ── */
+    @media (prefers-reduced-motion: no-preference) {
+      .reveal {
+        opacity: 0;
+        transform: translateY(18px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-bg-text">tiempo</div>
+    <div class="container">
+      <div class="hero-content">
+        <p class="hero-eyebrow">Portafolio digital — 2025</p>
+        <h1 class="hero-slogan">El tiempo pasa<br/><span>igual para todos.</span></h1>
+        <p class="hero-sub">Una presentación personal, sin filtros ni estructura forzada.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- INTERESES -->
+  <section>
+    <div class="container">
+      <div class="section-inner reveal">
+        <span class="section-label">Intereses</span>
+        <div class="section-body">
+          <h2>Lo que me engancha</h2>
+          <p>Consumo contenido que me genera algo real. No necesariamente el más educativo ni el más popular, sino el que vale la hora que le dedico.</p>
+          <div class="interest-list">
+            <span class="tag">Canales de comida</span>
+            <span class="tag">ZEPfilms</span>
+            <span class="tag">Reseñas de películas</span>
+            <span class="tag">k1ng</span>
+            <span class="tag">Fortnite</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section>
+    <div class="container">
+      <div class="section-inner reveal">
+        <span class="section-label">Skills digitales</span>
+        <div class="section-body">
+          <h2>Lo que sé hacer</h2>
+          <p>Dos cosas que desarrollé en algún momento y que me siguen sirviendo de maneras distintas.</p>
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">Edición de fotos</span>
+            </div>
+            <div class="skill-track"><div class="skill-fill" data-width="78" style="width:0%"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">Exposición oral</span>
+            </div>
+            <div class="skill-track"><div class="skill-fill" data-width="85" style="width:0%"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONECTIVIDAD -->
+  <section>
+    <div class="container">
+      <div class="section-inner reveal">
+        <span class="section-label">Conectividad y canales</span>
+        <div class="section-body">
+          <h2>Cómo me organizo (o no)</h2>
+          <p>No uso ninguna herramienta para organizar mi trabajo. Prefiero improvisar antes que gastar energía planificando cosas que igual terminan saliendo bien. No me interesa calcular qué nota va a tener mi boletín dentro de cuatro meses — esa energía la pongo en otro lado.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPECTATIVAS -->
+  <section>
+    <div class="container">
+      <div class="section-inner reveal">
+        <span class="section-label">Expectativas</span>
+        <div class="section-body">
+          <h2>Qué espero de esta materia</h2>
+          <p>Nada en particular. Cada profesor tiene su propia propuesta, y eso no siempre coincide con lo que uno espera. Lo que pase acá depende más del enfoque del docente que de mis expectativas previas.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <span class="footer-copy">© 2025 Gonza</span>
+      <a class="footer-ig" href="https://instagram.com/gonza.tnsc" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+          <circle cx="12" cy="12" r="4"/>
+          <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/>
+        </svg>
+        @gonza.tnsc
+      </a>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const revealEls = document.querySelectorAll('.reveal');
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => obs.observe(el));
+
+    // Skill bar animation
+    const skillFills = document.querySelectorAll('.skill-fill');
+    const skillObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          const w = e.target.dataset.width;
+          e.target.style.width = w + '%';
+          skillObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    skillFills.forEach(el => skillObs.observe(el));
+  </script>
+
+</body>
+</html>
